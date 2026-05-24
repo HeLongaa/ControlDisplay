@@ -1,0 +1,7 @@
+.build/
+*.o
+*.d
+DerivedData/
+*.xcuserstate
+.DS_Store
+icon.iconset/

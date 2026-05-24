@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:DissableMacDosplay}",
+            "name": "Debug DisplaySwitchLab",
+            "target": "DisplaySwitchLab",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug DisplaySwitchLab"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:DissableMacDosplay}",
+            "name": "Release DisplaySwitchLab",
+            "target": "DisplaySwitchLab",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release DisplaySwitchLab"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:DissableMacDosplay}",
+            "name": "Debug ControlDisplay",
+            "target": "ControlDisplay",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug ControlDisplay"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:DissableMacDosplay}",
+            "name": "Release ControlDisplay",
+            "target": "ControlDisplay",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release ControlDisplay"
+        }
+    ]
+}

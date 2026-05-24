@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: ./build.sh release
+
+      - name: Zip app
+        run: |
+          cd .build/release
+          zip -r ControlDisplay.zip ControlDisplay.app
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: .build/release/ControlDisplay.zip
