@@ -25,6 +25,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         refreshChecks()
         observeDisplayChanges()
         registerHotKey()
+        Updater.checkInBackground()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -75,6 +76,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         loginAtStartupItem = NSMenuItem(title: "登录时启动", action: #selector(toggleLoginAtStartup), keyEquivalent: "")
         loginAtStartupItem.target = self
         menu.addItem(loginAtStartupItem)
+
+        let checkUpdate = NSMenuItem(title: "检查更新…", action: #selector(checkForUpdates), keyEquivalent: "")
+        checkUpdate.target = self
+        menu.addItem(checkUpdate)
 
         let about = NSMenuItem(title: "关于 ControlDisplay", action: #selector(showAbout), keyEquivalent: "")
         about.target = self
@@ -135,13 +140,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         refreshChecks()
     }
 
+    @objc private func checkForUpdates() {
+        Updater.checkManually()
+    }
+
     @objc private func showAbout() {
         NSApp.activate(ignoringOtherApps: true)
         let alert = NSAlert()
-        alert.messageText = "ControlDisplay"
+        alert.messageText = "ControlDisplay \(Updater.currentVersion)"
         alert.informativeText = "一个原生 macOS 菜单栏小工具，用于在内置屏与外接显示器之间快速切换。"
         alert.alertStyle = .informational
-        alert.runModal()
+        alert.addButton(withTitle: "关闭")
+        alert.addButton(withTitle: "查看源码")
+        if alert.runModal() == .alertSecondButtonReturn {
+            NSWorkspace.shared.open(URL(string: "https://github.com/HeLongaa/ControlDisplay")!)
+        }
     }
 
     @objc private func quit() {
